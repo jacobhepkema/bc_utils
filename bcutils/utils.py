@@ -9,7 +9,8 @@ def find_closest_bc(bc,
                     cutoff=1,
                     use_levenshtein=False):
     '''
-    Finds the closest barcode using the Hamming distance metric
+    Finds the closest barcode using the Hamming distance metric. 
+    If the closest matches have the same distance, it returns both.
 
     Parameters
     ----------
