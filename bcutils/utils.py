@@ -11,6 +11,7 @@ def find_closest_bc(bc,
     '''
     Finds the closest barcode using the Hamming distance metric. 
     If the closest matches have the same distance, it returns both.
+    This function assumes the barcodes are all the same case.
 
     Parameters
     ----------
