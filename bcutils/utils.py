@@ -20,7 +20,7 @@ def find_closest_bc(bc,
     library
         pd.DataFrame object containing 'barcode' column and 'seq' column
     cutoff
-        Maximum distance for finding closest match
+        Maximum distance for finding closest match. Set to None to return distances
     use_levenshtein
         Whether to use the Levenshtein distance instead of Hamming
     '''
@@ -31,7 +31,10 @@ def find_closest_bc(bc,
     else:
         # Use Hamming distance
         distances = np.array([Levenshtein.hamming(bc, x) for x in list(library['barcode'])])
-    if sum(distances <= cutoff) != 0:
-        return library.iloc[np.argwhere(distances <= cutoff)[:,0]]
+    if cutoff is not None:
+        if sum(distances <= cutoff) != 0:
+            return library.iloc[np.argwhere(distances <= cutoff)[:,0]]
+        else:
+            return None
     else:
-        return None
+        return distances
